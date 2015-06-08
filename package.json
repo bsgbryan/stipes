@@ -1,0 +1,30 @@
+{
+  "name": "stipes",
+  "version": "1.0.0",
+  "description": "Simple, pretty console logging",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bsgbryan/stipes.git"
+  },
+  "keywords": [
+    "logging",
+    "console",
+    "logging",
+    "pretty",
+    "logging",
+    "pretty"
+  ],
+  "author": "Bryan Maynard <bsgbryan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsgbryan/stipes/issues"
+  },
+  "homepage": "https://github.com/bsgbryan/stipes",
+  "dependencies": {
+    "colors": "^1.1.0"
+  }
+}
