@@ -1,18 +1,28 @@
     c = require 'colors'
 
-    style = (content) ->
+    style = (content, indent) ->
+      out = ''
       if typeof content == 'string'
-        content
+        out += content
       else if typeof content == 'number'
-        content.toString().cyan
+        out += content.toString().cyan
       else if typeof content == 'boolean'
-        content.toString().underline
+        out += content.toString().underline
+      else if typeof content == 'object'
+        if Array.isArray content
+          out = "\n#{[0...indent + 2].map((i) -> ' ').join ''}" + content
+            .map (j) -> style j, indent + 2
+            .join "\n#{[0...indent + 2].map((i) -> ' ').join ''}"
+        else
+          out = format_json content, indent + 2, false
+
+      out
 
     format = (message) ->
       if typeof message == 'object'
-        format_json message
+        format_json message, 2
       else if typeof message != 'undefined'
-        style message
+        style message, 2
       else
         ''
 
@@ -23,27 +33,19 @@
       return "#{text.blue}"   + '('.blue   + status.italic + ') '.blue   if text == 'DEBUG'
       return "#{text.red}"    + '('.red    + status.italic + ') '.red    if text == 'ERROR'
 
-    format_json = (json, indent = 2) ->
+    format_json = (json, indent = 2, newline = true) ->
       if json?
-        depth = "\n#{[0...indent].map((i) -> ' ').join ''}"
+        depth = if newline then "\n#{[0...indent].map((i) -> ' ').join ''}" else ''
 
         Object
           .keys json
           .map (k) ->
-            out = "#{depth}#{k.magenta.bold}: "
+            out = "#{depth[0...-2]} -#{k.magenta.bold}: "
 
-            if typeof json[k] == 'object'
-              if Array.isArray json[k]
-                out += json[k]
-                  .map (j) -> style j
-                  .join ', '
-              else
-                out += "\n#{format_json json[k], indent + 2}"
-            else
-              out += style json[k]
+            out += style json[k], indent
 
             out
-          .join '\n'
+          .join ''
       else
         ''
 
