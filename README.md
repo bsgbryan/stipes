@@ -31,7 +31,7 @@ stipes.error 'Postgres', 'ran into an error', error
 This willl output the following:
 
 ```
-ERROR(Postgres) ran into an error
+ERROR(Tester) ran into an error
   code: 314159
   message: Expected cake
 ```
