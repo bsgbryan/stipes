@@ -10,11 +10,11 @@
         out += content.toString().underline
       else if typeof content == 'object'
         if Array.isArray content
-          out = "\n#{[0...indent + 2].map((i) -> ' ').join ''}" + content
+          out = "#{[0...indent].map((i) -> ' ').join ''}" + content
             .map (j) -> style j, indent + 2
-            .join "\n#{[0...indent + 2].map((i) -> ' ').join ''}"
+            .join "\n#{[0...indent].map((i) -> ' ').join ''}"
         else
-          out = format_json content, indent + 2, false
+          out = format_json content, indent
 
       out
 
