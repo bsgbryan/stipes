@@ -50,8 +50,8 @@
     module.exports = 
       format_json: format_json
 
-      success: (status, message, json) -> console.log lead('SUCCESS', status) + message.bold + format json
-      warn:    (status, message, json) -> console.log lead('WARNING', status) + message      + format json
-      debug:   (status, message, json) -> console.log lead('NOTICE',  status) + message      + format json
-      notice:  (status, message, json) -> console.log (lead('DEBUG',  status) + message      + format json).bgWhite
-      error:   (status, message, json) -> console.log lead('ERROR',   status) + message.bold + format json
+      success: (status, message, json) -> console.log lead('SUCCESS', status) + "#{message.bold} " + format json
+      warn:    (status, message, json) -> console.log lead('WARNING', status) + "#{message} "      + format json
+      debug:   (status, message, json) -> console.log lead('NOTICE',  status) + "#{message} "      + format json
+      notice:  (status, message, json) -> console.log (lead('DEBUG',  status) + "#{message} "      + format json).bgWhite
+      error:   (status, message, json) -> console.log lead('ERROR',   status) + "#{message.bold} " + format json
